@@ -41,10 +41,10 @@ for (let i = 0; i < n; i++) {
                 SELECT    '${tableName}.${columnName}' AS [TABLE] ,
                 X.${columnName} AS VALUE
                 FROM      (
-                SELECT COUNT(${tableName}_ID) AS COUNTID, ${columnName} 
+                SELECT COUNT(1) AS COUNTID, ${columnName} 
                 FROM ${tableName} WITH ( NOLOCK )
                 GROUP BY ${columnName}
-                HAVING COUNT(${tableName}_ID) > 1
+                HAVING COUNT(1) > 1
                 ) X
                 `
             break;
@@ -66,7 +66,7 @@ for (let i = 0; i < n; i++) {
                 ${tableName}.${columnName} AS VALUE
                 FROM dbo.${tableName} WITH(NOLOCK)
                 LEFT JOIN dbo.${joinTableName} WITH(NOLOCK) ON ${joinTableName}.${joinColumnName} = ${tableName}.${columnName}
-                WHERE ${joinTableName}_ID IS NULL
+                WHERE ${joinTableName}.${joinColumnName} IS NULL
                 GROUP BY ${tableName}.${columnName}
                 `
             break;
