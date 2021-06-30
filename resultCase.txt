@@ -1,0 +1,2027 @@
+
+    --====================================== DATA TIDAK BOLEH DUPLIKAT
+
+    Insert  Into INTEGRITY_CHECK
+        ( ISSUE ,
+          [TABLE] ,
+          VALUE
+        )
+        Select  'DATA TIDAK BOLEH DUPLIKAT' ,
+                [TABLE] ,
+                VALUE
+        From    (
+    
+                SELECT    'ASSET_ACCESSORY.ASSET_ACCESSORY_CODE' AS [TABLE] ,
+                X.ASSET_ACCESSORY_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ASSET_ACCESSORY_CODE 
+                FROM ASSET_ACCESSORY WITH ( NOLOCK )
+                GROUP BY ASSET_ACCESSORY_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'ASSET_CATEGORY.ASSET_CATEGORY_CODE' AS [TABLE] ,
+                X.ASSET_CATEGORY_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ASSET_CATEGORY_CODE 
+                FROM ASSET_CATEGORY WITH ( NOLOCK )
+                GROUP BY ASSET_CATEGORY_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'ASSET_MASTER.ASSET_CODE' AS [TABLE] ,
+                X.ASSET_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ASSET_CODE 
+                FROM ASSET_MASTER WITH ( NOLOCK )
+                GROUP BY ASSET_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'ASSET_MASTER.FULL_ASSET_CODE' AS [TABLE] ,
+                X.FULL_ASSET_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, FULL_ASSET_CODE 
+                FROM ASSET_MASTER WITH ( NOLOCK )
+                GROUP BY FULL_ASSET_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'ASSET_SCHM_H.ASSET_SCHM_CODE' AS [TABLE] ,
+                X.ASSET_SCHM_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ASSET_SCHM_CODE 
+                FROM ASSET_SCHM_H WITH ( NOLOCK )
+                GROUP BY ASSET_SCHM_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'ASSET_TYPE.ASSET_TYPE_CODE' AS [TABLE] ,
+                X.ASSET_TYPE_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ASSET_TYPE_CODE 
+                FROM ASSET_TYPE WITH ( NOLOCK )
+                GROUP BY ASSET_TYPE_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_ASSET_DOC.ASSET_DOC_CODE' AS [TABLE] ,
+                X.ASSET_DOC_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ASSET_DOC_CODE 
+                FROM REF_ASSET_DOC WITH ( NOLOCK )
+                GROUP BY ASSET_DOC_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'CUST.CUST_NO' AS [TABLE] ,
+                X.CUST_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, CUST_NO 
+                FROM CUST WITH ( NOLOCK )
+                GROUP BY CUST_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'CUST_BANK_ACC.BANK_ACC_NO' AS [TABLE] ,
+                X.BANK_ACC_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, BANK_ACC_NO 
+                FROM CUST_BANK_ACC WITH ( NOLOCK )
+                GROUP BY BANK_ACC_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'CUST_COMPANY_LEGAL_DOC.DOC_NO' AS [TABLE] ,
+                X.DOC_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, DOC_NO 
+                FROM CUST_COMPANY_LEGAL_DOC WITH ( NOLOCK )
+                GROUP BY DOC_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'NEGATIVE_CUST.CUST_NO' AS [TABLE] ,
+                X.CUST_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, CUST_NO 
+                FROM NEGATIVE_CUST WITH ( NOLOCK )
+                GROUP BY CUST_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'NEGATIVE_CUST.NEGATIVE_CUST_NO' AS [TABLE] ,
+                X.NEGATIVE_CUST_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, NEGATIVE_CUST_NO 
+                FROM NEGATIVE_CUST WITH ( NOLOCK )
+                GROUP BY NEGATIVE_CUST_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'CABINET.CABINET_CODE' AS [TABLE] ,
+                X.CABINET_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, CABINET_CODE 
+                FROM CABINET WITH ( NOLOCK )
+                GROUP BY CABINET_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'FILING.FILING_CODE' AS [TABLE] ,
+                X.FILING_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, FILING_CODE 
+                FROM FILING WITH ( NOLOCK )
+                GROUP BY FILING_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'RACK.RACK_CODE' AS [TABLE] ,
+                X.RACK_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, RACK_CODE 
+                FROM RACK WITH ( NOLOCK )
+                GROUP BY RACK_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'LBPPMS_BIZ_SCL.LBPPMS_BIZ_SCL_CODE' AS [TABLE] ,
+                X.LBPPMS_BIZ_SCL_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, LBPPMS_BIZ_SCL_CODE 
+                FROM LBPPMS_BIZ_SCL WITH ( NOLOCK )
+                GROUP BY LBPPMS_BIZ_SCL_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'LBPPMS_BIZ_SUSTAIN.LBPPMS_BIZ_SUSTAIN_CODE' AS [TABLE] ,
+                X.LBPPMS_BIZ_SUSTAIN_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, LBPPMS_BIZ_SUSTAIN_CODE 
+                FROM LBPPMS_BIZ_SUSTAIN WITH ( NOLOCK )
+                GROUP BY LBPPMS_BIZ_SUSTAIN_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'LBPPMS_CNTRPRT.LBPPMS_CNTRPRT_CODE' AS [TABLE] ,
+                X.LBPPMS_CNTRPRT_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, LBPPMS_CNTRPRT_CODE 
+                FROM LBPPMS_CNTRPRT WITH ( NOLOCK )
+                GROUP BY LBPPMS_CNTRPRT_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'LBPPMS_DEBT_GRP.LBPPMS_DEBT_GRP_CODE' AS [TABLE] ,
+                X.LBPPMS_DEBT_GRP_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, LBPPMS_DEBT_GRP_CODE 
+                FROM LBPPMS_DEBT_GRP WITH ( NOLOCK )
+                GROUP BY LBPPMS_DEBT_GRP_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'CENTER_GRP.CENTER_GRP_CODE' AS [TABLE] ,
+                X.CENTER_GRP_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, CENTER_GRP_CODE 
+                FROM CENTER_GRP WITH ( NOLOCK )
+                GROUP BY CENTER_GRP_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'EMP_BANK_ACC.BANK_ACC_NO' AS [TABLE] ,
+                X.BANK_ACC_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, BANK_ACC_NO 
+                FROM EMP_BANK_ACC WITH ( NOLOCK )
+                GROUP BY BANK_ACC_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_EMP.EMP_NO' AS [TABLE] ,
+                X.EMP_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, EMP_NO 
+                FROM REF_EMP WITH ( NOLOCK )
+                GROUP BY EMP_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_JOB_TITLE.JOB_TITLE_CODE' AS [TABLE] ,
+                X.JOB_TITLE_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, JOB_TITLE_CODE 
+                FROM REF_JOB_TITLE WITH ( NOLOCK )
+                GROUP BY JOB_TITLE_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_OFFICE.OFFICE_CODE' AS [TABLE] ,
+                X.OFFICE_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, OFFICE_CODE 
+                FROM REF_OFFICE WITH ( NOLOCK )
+                GROUP BY OFFICE_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_OFFICE_AREA.AREA_CODE' AS [TABLE] ,
+                X.AREA_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, AREA_CODE 
+                FROM REF_OFFICE_AREA WITH ( NOLOCK )
+                GROUP BY AREA_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_ROLE.ROLE_CODE' AS [TABLE] ,
+                X.ROLE_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ROLE_CODE 
+                FROM REF_ROLE WITH ( NOLOCK )
+                GROUP BY ROLE_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'SURVEYOR.SURVEYOR_NO' AS [TABLE] ,
+                X.SURVEYOR_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, SURVEYOR_NO 
+                FROM SURVEYOR WITH ( NOLOCK )
+                GROUP BY SURVEYOR_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_BIZ_UNIT.BIZ_UNIT_CODE' AS [TABLE] ,
+                X.BIZ_UNIT_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, BIZ_UNIT_CODE 
+                FROM REF_BIZ_UNIT WITH ( NOLOCK )
+                GROUP BY BIZ_UNIT_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_LOB.LOB_CODE' AS [TABLE] ,
+                X.LOB_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, LOB_CODE 
+                FROM REF_LOB WITH ( NOLOCK )
+                GROUP BY LOB_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_MASTER_TYPE.REF_MASTER_TYPE_CODE' AS [TABLE] ,
+                X.REF_MASTER_TYPE_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, REF_MASTER_TYPE_CODE 
+                FROM REF_MASTER_TYPE WITH ( NOLOCK )
+                GROUP BY REF_MASTER_TYPE_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_TC.TC_CODE' AS [TABLE] ,
+                X.TC_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, TC_CODE 
+                FROM REF_TC WITH ( NOLOCK )
+                GROUP BY TC_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'HOLIDAY_SCHM_H.HOLIDAY_SCHM_CODE' AS [TABLE] ,
+                X.HOLIDAY_SCHM_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, HOLIDAY_SCHM_CODE 
+                FROM HOLIDAY_SCHM_H WITH ( NOLOCK )
+                GROUP BY HOLIDAY_SCHM_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_ATTR.ATTR_CODE' AS [TABLE] ,
+                X.ATTR_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ATTR_CODE 
+                FROM REF_ATTR WITH ( NOLOCK )
+                GROUP BY ATTR_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_BANK.BANK_CODE' AS [TABLE] ,
+                X.BANK_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, BANK_CODE 
+                FROM REF_BANK WITH ( NOLOCK )
+                GROUP BY BANK_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_COUNTRY.COUNTRY_CODE' AS [TABLE] ,
+                X.COUNTRY_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, COUNTRY_CODE 
+                FROM REF_COUNTRY WITH ( NOLOCK )
+                GROUP BY COUNTRY_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_CURR.CURR_CODE' AS [TABLE] ,
+                X.CURR_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, CURR_CODE 
+                FROM REF_CURR WITH ( NOLOCK )
+                GROUP BY CURR_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_ECONOMIC_SECTOR.ECONOMIC_SECTOR_CODE' AS [TABLE] ,
+                X.ECONOMIC_SECTOR_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, ECONOMIC_SECTOR_CODE 
+                FROM REF_ECONOMIC_SECTOR WITH ( NOLOCK )
+                GROUP BY ECONOMIC_SECTOR_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_INDUSTRY_TYPE.INDUSTRY_TYPE_CODE' AS [TABLE] ,
+                X.INDUSTRY_TYPE_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, INDUSTRY_TYPE_CODE 
+                FROM REF_INDUSTRY_TYPE WITH ( NOLOCK )
+                GROUP BY INDUSTRY_TYPE_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_MASTER.MASTER_CODE' AS [TABLE] ,
+                X.MASTER_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, MASTER_CODE 
+                FROM REF_MASTER WITH ( NOLOCK )
+                GROUP BY MASTER_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_PROFESSION.PROFESSION_CODE' AS [TABLE] ,
+                X.PROFESSION_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, PROFESSION_CODE 
+                FROM REF_PROFESSION WITH ( NOLOCK )
+                GROUP BY PROFESSION_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_PROV_DISTRICT.PROV_DISTRICT_CODE' AS [TABLE] ,
+                X.PROV_DISTRICT_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, PROV_DISTRICT_CODE 
+                FROM REF_PROV_DISTRICT WITH ( NOLOCK )
+                GROUP BY PROV_DISTRICT_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'REF_USER.USERNAME' AS [TABLE] ,
+                X.USERNAME AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, USERNAME 
+                FROM REF_USER WITH ( NOLOCK )
+                GROUP BY USERNAME
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'WORKING_HOUR_SCHM_H.WORKING_HOUR_SCHM_CODE' AS [TABLE] ,
+                X.WORKING_HOUR_SCHM_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, WORKING_HOUR_SCHM_CODE 
+                FROM WORKING_HOUR_SCHM_H WITH ( NOLOCK )
+                GROUP BY WORKING_HOUR_SCHM_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'VENDOR.VENDOR_CODE' AS [TABLE] ,
+                X.VENDOR_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, VENDOR_CODE 
+                FROM VENDOR WITH ( NOLOCK )
+                GROUP BY VENDOR_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'VENDOR_ATTR.VENDOR_ATTR_CODE' AS [TABLE] ,
+                X.VENDOR_ATTR_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, VENDOR_ATTR_CODE 
+                FROM VENDOR_ATTR WITH ( NOLOCK )
+                GROUP BY VENDOR_ATTR_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'VENDOR_BANK_ACC.BANK_ACCOUNT_NO' AS [TABLE] ,
+                X.BANK_ACCOUNT_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, BANK_ACCOUNT_NO 
+                FROM VENDOR_BANK_ACC WITH ( NOLOCK )
+                GROUP BY BANK_ACCOUNT_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'VENDOR_EMP.VENDOR_EMP_NO' AS [TABLE] ,
+                X.VENDOR_EMP_NO AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, VENDOR_EMP_NO 
+                FROM VENDOR_EMP WITH ( NOLOCK )
+                GROUP BY VENDOR_EMP_NO
+                HAVING COUNT(1) > 1
+                ) X
+                
+                UNION
+
+                SELECT    'VENDOR_SCHM.VENDOR_SCHM_CODE' AS [TABLE] ,
+                X.VENDOR_SCHM_CODE AS VALUE
+                FROM      (
+                SELECT COUNT(1) AS COUNTID, VENDOR_SCHM_CODE 
+                FROM VENDOR_SCHM WITH ( NOLOCK )
+                GROUP BY VENDOR_SCHM_CODE
+                HAVING COUNT(1) > 1
+                ) X
+                
+        ) AS X
+    --====================================== IS_ DIISI 0 ATAU 1, BUKAN Y ATAU N, TIDAK BOLEH NULL
+
+    Insert  Into INTEGRITY_CHECK
+        ( ISSUE ,
+          [TABLE] ,
+          VALUE
+        )
+        Select  'IS_ DIISI 0 ATAU 1, BUKAN Y ATAU N, TIDAK BOLEH NULL' ,
+                [TABLE] ,
+                VALUE
+        From    (
+    
+                Select    'ASSET_ACCESSORY.IS_ACTIVE' As [TABLE] ,
+                ASSET_ACCESSORY.IS_ACTIVE As VALUE
+                From      ASSET_ACCESSORY With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'ASSET_ATTR.IS_EDITABLE_AFTER_GO_LIVE' As [TABLE] ,
+                ASSET_ATTR.IS_EDITABLE_AFTER_GO_LIVE As VALUE
+                From      ASSET_ATTR With ( NoLock )
+                Where     IS_EDITABLE_AFTER_GO_LIVE Not In ( 1, 0 )
+                Or IS_EDITABLE_AFTER_GO_LIVE Is Null
+                
+                UNION
+
+                Select    'ASSET_CATEGORY.IS_ACTIVE' As [TABLE] ,
+                ASSET_CATEGORY.IS_ACTIVE As VALUE
+                From      ASSET_CATEGORY With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'ASSET_DOC_LIST.IS_MAIN_DOC' As [TABLE] ,
+                ASSET_DOC_LIST.IS_MAIN_DOC As VALUE
+                From      ASSET_DOC_LIST With ( NoLock )
+                Where     IS_MAIN_DOC Not In ( 1, 0 )
+                Or IS_MAIN_DOC Is Null
+                
+                UNION
+
+                Select    'ASSET_DOC_LIST.IS_VALUE_NEEDED' As [TABLE] ,
+                ASSET_DOC_LIST.IS_VALUE_NEEDED As VALUE
+                From      ASSET_DOC_LIST With ( NoLock )
+                Where     IS_VALUE_NEEDED Not In ( 1, 0 )
+                Or IS_VALUE_NEEDED Is Null
+                
+                UNION
+
+                Select    'ASSET_DOC_LIST.IS_PLEDGE' As [TABLE] ,
+                ASSET_DOC_LIST.IS_PLEDGE As VALUE
+                From      ASSET_DOC_LIST With ( NoLock )
+                Where     IS_PLEDGE Not In ( 1, 0 )
+                Or IS_PLEDGE Is Null
+                
+                UNION
+
+                Select    'ASSET_DOC_LIST.IS_BORROW' As [TABLE] ,
+                ASSET_DOC_LIST.IS_BORROW As VALUE
+                From      ASSET_DOC_LIST With ( NoLock )
+                Where     IS_BORROW Not In ( 1, 0 )
+                Or IS_BORROW Is Null
+                
+                UNION
+
+                Select    'ASSET_DOC_LIST.IS_MANDATORY_NEW' As [TABLE] ,
+                ASSET_DOC_LIST.IS_MANDATORY_NEW As VALUE
+                From      ASSET_DOC_LIST With ( NoLock )
+                Where     IS_MANDATORY_NEW Not In ( 1, 0 )
+                Or IS_MANDATORY_NEW Is Null
+                
+                UNION
+
+                Select    'ASSET_DOC_LIST.IS_MANDATORY_USED' As [TABLE] ,
+                ASSET_DOC_LIST.IS_MANDATORY_USED As VALUE
+                From      ASSET_DOC_LIST With ( NoLock )
+                Where     IS_MANDATORY_USED Not In ( 1, 0 )
+                Or IS_MANDATORY_USED Is Null
+                
+                UNION
+
+                Select    'ASSET_DOC_LIST.IS_ACTIVE' As [TABLE] ,
+                ASSET_DOC_LIST.IS_ACTIVE As VALUE
+                From      ASSET_DOC_LIST With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'ASSET_MASTER.IS_FINAL' As [TABLE] ,
+                ASSET_MASTER.IS_FINAL As VALUE
+                From      ASSET_MASTER With ( NoLock )
+                Where     IS_FINAL Not In ( 1, 0 )
+                Or IS_FINAL Is Null
+                
+                UNION
+
+                Select    'ASSET_MASTER.IS_ACTIVE' As [TABLE] ,
+                ASSET_MASTER.IS_ACTIVE As VALUE
+                From      ASSET_MASTER With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'ASSET_SCHM_H.IS_ACTIVE' As [TABLE] ,
+                ASSET_SCHM_H.IS_ACTIVE As VALUE
+                From      ASSET_SCHM_H With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'ASSET_SCHM_H.IS_SYSTEM' As [TABLE] ,
+                ASSET_SCHM_H.IS_SYSTEM As VALUE
+                From      ASSET_SCHM_H With ( NoLock )
+                Where     IS_SYSTEM Not In ( 1, 0 )
+                Or IS_SYSTEM Is Null
+                
+                UNION
+
+                Select    'ASSET_TYPE.IS_MNDTRY_SERIAL_NO_1' As [TABLE] ,
+                ASSET_TYPE.IS_MNDTRY_SERIAL_NO_1 As VALUE
+                From      ASSET_TYPE With ( NoLock )
+                Where     IS_MNDTRY_SERIAL_NO_1 Not In ( 1, 0 )
+                Or IS_MNDTRY_SERIAL_NO_1 Is Null
+                
+                UNION
+
+                Select    'ASSET_TYPE.IS_MNDTRY_SERIAL_NO_2' As [TABLE] ,
+                ASSET_TYPE.IS_MNDTRY_SERIAL_NO_2 As VALUE
+                From      ASSET_TYPE With ( NoLock )
+                Where     IS_MNDTRY_SERIAL_NO_2 Not In ( 1, 0 )
+                Or IS_MNDTRY_SERIAL_NO_2 Is Null
+                
+                UNION
+
+                Select    'ASSET_TYPE.IS_MNDTRY_SERIAL_NO_3' As [TABLE] ,
+                ASSET_TYPE.IS_MNDTRY_SERIAL_NO_3 As VALUE
+                From      ASSET_TYPE With ( NoLock )
+                Where     IS_MNDTRY_SERIAL_NO_3 Not In ( 1, 0 )
+                Or IS_MNDTRY_SERIAL_NO_3 Is Null
+                
+                UNION
+
+                Select    'ASSET_TYPE.IS_MNDTRY_SERIAL_NO_4' As [TABLE] ,
+                ASSET_TYPE.IS_MNDTRY_SERIAL_NO_4 As VALUE
+                From      ASSET_TYPE With ( NoLock )
+                Where     IS_MNDTRY_SERIAL_NO_4 Not In ( 1, 0 )
+                Or IS_MNDTRY_SERIAL_NO_4 Is Null
+                
+                UNION
+
+                Select    'ASSET_TYPE.IS_MNDTRY_SERIAL_NO_5' As [TABLE] ,
+                ASSET_TYPE.IS_MNDTRY_SERIAL_NO_5 As VALUE
+                From      ASSET_TYPE With ( NoLock )
+                Where     IS_MNDTRY_SERIAL_NO_5 Not In ( 1, 0 )
+                Or IS_MNDTRY_SERIAL_NO_5 Is Null
+                
+                UNION
+
+                Select    'ASSET_TYPE.IS_LOAN_OBJ' As [TABLE] ,
+                ASSET_TYPE.IS_LOAN_OBJ As VALUE
+                From      ASSET_TYPE With ( NoLock )
+                Where     IS_LOAN_OBJ Not In ( 1, 0 )
+                Or IS_LOAN_OBJ Is Null
+                
+                UNION
+
+                Select    'ASSET_TYPE.IS_ACTIVE' As [TABLE] ,
+                ASSET_TYPE.IS_ACTIVE As VALUE
+                From      ASSET_TYPE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_ASSET_DOC.IS_ACTIVE' As [TABLE] ,
+                REF_ASSET_DOC.IS_ACTIVE As VALUE
+                From      REF_ASSET_DOC With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'CUST.IS_VIP' As [TABLE] ,
+                CUST.IS_VIP As VALUE
+                From      CUST With ( NoLock )
+                Where     IS_VIP Not In ( 1, 0 )
+                Or IS_VIP Is Null
+                
+                UNION
+
+                Select    'CUST.IS_AFFILIATE_WITH_MF' As [TABLE] ,
+                CUST.IS_AFFILIATE_WITH_MF As VALUE
+                From      CUST With ( NoLock )
+                Where     IS_AFFILIATE_WITH_MF Not In ( 1, 0 )
+                Or IS_AFFILIATE_WITH_MF Is Null
+                
+                UNION
+
+                Select    'CUST.IS_CUSTOMER' As [TABLE] ,
+                CUST.IS_CUSTOMER As VALUE
+                From      CUST With ( NoLock )
+                Where     IS_CUSTOMER Not In ( 1, 0 )
+                Or IS_CUSTOMER Is Null
+                
+                UNION
+
+                Select    'CUST.IS_FAMILY' As [TABLE] ,
+                CUST.IS_FAMILY As VALUE
+                From      CUST With ( NoLock )
+                Where     IS_FAMILY Not In ( 1, 0 )
+                Or IS_FAMILY Is Null
+                
+                UNION
+
+                Select    'CUST.IS_GUARANTOR' As [TABLE] ,
+                CUST.IS_GUARANTOR As VALUE
+                From      CUST With ( NoLock )
+                Where     IS_GUARANTOR Not In ( 1, 0 )
+                Or IS_GUARANTOR Is Null
+                
+                UNION
+
+                Select    'CUST.IS_SHAREHOLDER' As [TABLE] ,
+                CUST.IS_SHAREHOLDER As VALUE
+                From      CUST With ( NoLock )
+                Where     IS_SHAREHOLDER Not In ( 1, 0 )
+                Or IS_SHAREHOLDER Is Null
+                
+                UNION
+
+                Select    'CUST_BANK_ACC.IS_BANK_STMNT' As [TABLE] ,
+                CUST_BANK_ACC.IS_BANK_STMNT As VALUE
+                From      CUST_BANK_ACC With ( NoLock )
+                Where     IS_BANK_STMNT Not In ( 1, 0 )
+                Or IS_BANK_STMNT Is Null
+                
+                UNION
+
+                Select    'CUST_BANK_ACC.IS_DEFAULT' As [TABLE] ,
+                CUST_BANK_ACC.IS_DEFAULT As VALUE
+                From      CUST_BANK_ACC With ( NoLock )
+                Where     IS_DEFAULT Not In ( 1, 0 )
+                Or IS_DEFAULT Is Null
+                
+                UNION
+
+                Select    'CUST_BANK_ACC.IS_ACTIVE' As [TABLE] ,
+                CUST_BANK_ACC.IS_ACTIVE As VALUE
+                From      CUST_BANK_ACC With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'CUST_COMPANY.IS_AFFILIATED' As [TABLE] ,
+                CUST_COMPANY.IS_AFFILIATED As VALUE
+                From      CUST_COMPANY With ( NoLock )
+                Where     IS_AFFILIATED Not In ( 1, 0 )
+                Or IS_AFFILIATED Is Null
+                
+                UNION
+
+                Select    'CUST_COMPANY.IS_TAXABLE' As [TABLE] ,
+                CUST_COMPANY.IS_TAXABLE As VALUE
+                From      CUST_COMPANY With ( NoLock )
+                Where     IS_TAXABLE Not In ( 1, 0 )
+                Or IS_TAXABLE Is Null
+                
+                UNION
+
+                Select    'CUST_COMPANY_LEGAL_DOC.IS_EXP_DT_MANDATORY' As [TABLE] ,
+                CUST_COMPANY_LEGAL_DOC.IS_EXP_DT_MANDATORY As VALUE
+                From      CUST_COMPANY_LEGAL_DOC With ( NoLock )
+                Where     IS_EXP_DT_MANDATORY Not In ( 1, 0 )
+                Or IS_EXP_DT_MANDATORY Is Null
+                
+                UNION
+
+                Select    'CUST_COMPANY_MGMNT_SHRHOLDER.IS_SIGNER' As [TABLE] ,
+                CUST_COMPANY_MGMNT_SHRHOLDER.IS_SIGNER As VALUE
+                From      CUST_COMPANY_MGMNT_SHRHOLDER With ( NoLock )
+                Where     IS_SIGNER Not In ( 1, 0 )
+                Or IS_SIGNER Is Null
+                
+                UNION
+
+                Select    'CUST_COMPANY_MGMNT_SHRHOLDER.IS_OWNER' As [TABLE] ,
+                CUST_COMPANY_MGMNT_SHRHOLDER.IS_OWNER As VALUE
+                From      CUST_COMPANY_MGMNT_SHRHOLDER With ( NoLock )
+                Where     IS_OWNER Not In ( 1, 0 )
+                Or IS_OWNER Is Null
+                
+                UNION
+
+                Select    'CUST_COMPANY_MGMNT_SHRHOLDER.IS_ACTIVE' As [TABLE] ,
+                CUST_COMPANY_MGMNT_SHRHOLDER.IS_ACTIVE As VALUE
+                From      CUST_COMPANY_MGMNT_SHRHOLDER With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'CUST_GRP.IS_ACTIVE' As [TABLE] ,
+                CUST_GRP.IS_ACTIVE As VALUE
+                From      CUST_GRP With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'CUST_PERSONAL.IS_REST_IN_PEACE' As [TABLE] ,
+                CUST_PERSONAL.IS_REST_IN_PEACE As VALUE
+                From      CUST_PERSONAL With ( NoLock )
+                Where     IS_REST_IN_PEACE Not In ( 1, 0 )
+                Or IS_REST_IN_PEACE Is Null
+                
+                UNION
+
+                Select    'CUST_PERSONAL_FIN_DATA.IS_JOIN_INCOME' As [TABLE] ,
+                CUST_PERSONAL_FIN_DATA.IS_JOIN_INCOME As VALUE
+                From      CUST_PERSONAL_FIN_DATA With ( NoLock )
+                Where     IS_JOIN_INCOME Not In ( 1, 0 )
+                Or IS_JOIN_INCOME Is Null
+                
+                UNION
+
+                Select    'CUST_PERSONAL_JOB_DATA.IS_MF_EMP' As [TABLE] ,
+                CUST_PERSONAL_JOB_DATA.IS_MF_EMP As VALUE
+                From      CUST_PERSONAL_JOB_DATA With ( NoLock )
+                Where     IS_MF_EMP Not In ( 1, 0 )
+                Or IS_MF_EMP Is Null
+                
+                UNION
+
+                Select    'CUST_PERSONAL_JOB_DATA.IS_WELLKNOWN_COY' As [TABLE] ,
+                CUST_PERSONAL_JOB_DATA.IS_WELLKNOWN_COY As VALUE
+                From      CUST_PERSONAL_JOB_DATA With ( NoLock )
+                Where     IS_WELLKNOWN_COY Not In ( 1, 0 )
+                Or IS_WELLKNOWN_COY Is Null
+                
+                UNION
+
+                Select    'NEGATIVE_CUST.IS_ACTIVE' As [TABLE] ,
+                NEGATIVE_CUST.IS_ACTIVE As VALUE
+                From      NEGATIVE_CUST With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'CABINET.IS_ACTIVE' As [TABLE] ,
+                CABINET.IS_ACTIVE As VALUE
+                From      CABINET With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'FILING.IS_ACTIVE' As [TABLE] ,
+                FILING.IS_ACTIVE As VALUE
+                From      FILING With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'RACK.IS_ACTIVE' As [TABLE] ,
+                RACK.IS_ACTIVE As VALUE
+                From      RACK With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_ACCT_BOOK.IS_ACTIVE' As [TABLE] ,
+                REF_ACCT_BOOK.IS_ACTIVE As VALUE
+                From      REF_ACCT_BOOK With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'CENTER_GRP.IS_ACTIVE' As [TABLE] ,
+                CENTER_GRP.IS_ACTIVE As VALUE
+                From      CENTER_GRP With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'CENTER_GRP_OFFICE_MBR.IS_COORDINATOR' As [TABLE] ,
+                CENTER_GRP_OFFICE_MBR.IS_COORDINATOR As VALUE
+                From      CENTER_GRP_OFFICE_MBR With ( NoLock )
+                Where     IS_COORDINATOR Not In ( 1, 0 )
+                Or IS_COORDINATOR Is Null
+                
+                UNION
+
+                Select    'REF_EMP.IS_EXT' As [TABLE] ,
+                REF_EMP.IS_EXT As VALUE
+                From      REF_EMP With ( NoLock )
+                Where     IS_EXT Not In ( 1, 0 )
+                Or IS_EXT Is Null
+                
+                UNION
+
+                Select    'REF_EMP.IS_LEAVE' As [TABLE] ,
+                REF_EMP.IS_LEAVE As VALUE
+                From      REF_EMP With ( NoLock )
+                Where     IS_LEAVE Not In ( 1, 0 )
+                Or IS_LEAVE Is Null
+                
+                UNION
+
+                Select    'REF_EMP.IS_ACTIVE' As [TABLE] ,
+                REF_EMP.IS_ACTIVE As VALUE
+                From      REF_EMP With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_JOB_TITLE.IS_ACTIVE' As [TABLE] ,
+                REF_JOB_TITLE.IS_ACTIVE As VALUE
+                From      REF_JOB_TITLE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_OFFICE.IS_ACTIVE' As [TABLE] ,
+                REF_OFFICE.IS_ACTIVE As VALUE
+                From      REF_OFFICE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_OFFICE.IS_OFFICE_CLOSE' As [TABLE] ,
+                REF_OFFICE.IS_OFFICE_CLOSE As VALUE
+                From      REF_OFFICE With ( NoLock )
+                Where     IS_OFFICE_CLOSE Not In ( 1, 0 )
+                Or IS_OFFICE_CLOSE Is Null
+                
+                UNION
+
+                Select    'REF_OFFICE.IS_ALLOW_APP_CREATED' As [TABLE] ,
+                REF_OFFICE.IS_ALLOW_APP_CREATED As VALUE
+                From      REF_OFFICE With ( NoLock )
+                Where     IS_ALLOW_APP_CREATED Not In ( 1, 0 )
+                Or IS_ALLOW_APP_CREATED Is Null
+                
+                UNION
+
+                Select    'REF_OFFICE.IS_VIRTUAL_OFFICE' As [TABLE] ,
+                REF_OFFICE.IS_VIRTUAL_OFFICE As VALUE
+                From      REF_OFFICE With ( NoLock )
+                Where     IS_VIRTUAL_OFFICE Not In ( 1, 0 )
+                Or IS_VIRTUAL_OFFICE Is Null
+                
+                UNION
+
+                Select    'REF_OFFICE.IS_NPWP' As [TABLE] ,
+                REF_OFFICE.IS_NPWP As VALUE
+                From      REF_OFFICE With ( NoLock )
+                Where     IS_NPWP Not In ( 1, 0 )
+                Or IS_NPWP Is Null
+                
+                UNION
+
+                Select    'REF_OFFICE.IS_HAVE_CASHIER' As [TABLE] ,
+                REF_OFFICE.IS_HAVE_CASHIER As VALUE
+                From      REF_OFFICE With ( NoLock )
+                Where     IS_HAVE_CASHIER Not In ( 1, 0 )
+                Or IS_HAVE_CASHIER Is Null
+                
+                UNION
+
+                Select    'REF_OFFICE_AREA.IS_ACTIVE' As [TABLE] ,
+                REF_OFFICE_AREA.IS_ACTIVE As VALUE
+                From      REF_OFFICE_AREA With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_ROLE.IS_ACTIVE' As [TABLE] ,
+                REF_ROLE.IS_ACTIVE As VALUE
+                From      REF_ROLE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'SURVEYOR.IS_ACTIVE' As [TABLE] ,
+                SURVEYOR.IS_ACTIVE As VALUE
+                From      SURVEYOR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_BIZ_UNIT.IS_ACTIVE' As [TABLE] ,
+                REF_BIZ_UNIT.IS_ACTIVE As VALUE
+                From      REF_BIZ_UNIT With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_MASTER_TYPE.IS_ACTIVE' As [TABLE] ,
+                REF_MASTER_TYPE.IS_ACTIVE As VALUE
+                From      REF_MASTER_TYPE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_MASTER_TYPE.IS_SYSTEM' As [TABLE] ,
+                REF_MASTER_TYPE.IS_SYSTEM As VALUE
+                From      REF_MASTER_TYPE With ( NoLock )
+                Where     IS_SYSTEM Not In ( 1, 0 )
+                Or IS_SYSTEM Is Null
+                
+                UNION
+
+                Select    'REF_TC.IS_MANDATORY' As [TABLE] ,
+                REF_TC.IS_MANDATORY As VALUE
+                From      REF_TC With ( NoLock )
+                Where     IS_MANDATORY Not In ( 1, 0 )
+                Or IS_MANDATORY Is Null
+                
+                UNION
+
+                Select    'REF_TC.IS_ACTIVE' As [TABLE] ,
+                REF_TC.IS_ACTIVE As VALUE
+                From      REF_TC With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'HOLIDAY_SCHM_D.IS_PUBLIC_HOLIDAY' As [TABLE] ,
+                HOLIDAY_SCHM_D.IS_PUBLIC_HOLIDAY As VALUE
+                From      HOLIDAY_SCHM_D With ( NoLock )
+                Where     IS_PUBLIC_HOLIDAY Not In ( 1, 0 )
+                Or IS_PUBLIC_HOLIDAY Is Null
+                
+                UNION
+
+                Select    'HOLIDAY_SCHM_H.IS_ACTIVE' As [TABLE] ,
+                HOLIDAY_SCHM_H.IS_ACTIVE As VALUE
+                From      HOLIDAY_SCHM_H With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_ATTR.IS_SYSTEM' As [TABLE] ,
+                REF_ATTR.IS_SYSTEM As VALUE
+                From      REF_ATTR With ( NoLock )
+                Where     IS_SYSTEM Not In ( 1, 0 )
+                Or IS_SYSTEM Is Null
+                
+                UNION
+
+                Select    'REF_ATTR.IS_ACTIVE' As [TABLE] ,
+                REF_ATTR.IS_ACTIVE As VALUE
+                From      REF_ATTR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_ATTR.IS_MANDATORY' As [TABLE] ,
+                REF_ATTR.IS_MANDATORY As VALUE
+                From      REF_ATTR With ( NoLock )
+                Where     IS_MANDATORY Not In ( 1, 0 )
+                Or IS_MANDATORY Is Null
+                
+                UNION
+
+                Select    'REF_BANK.IS_ACTIVE' As [TABLE] ,
+                REF_BANK.IS_ACTIVE As VALUE
+                From      REF_BANK With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_CURR.IS_ACTIVE' As [TABLE] ,
+                REF_CURR.IS_ACTIVE As VALUE
+                From      REF_CURR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_ECONOMIC_SECTOR.IS_ACTIVE' As [TABLE] ,
+                REF_ECONOMIC_SECTOR.IS_ACTIVE As VALUE
+                From      REF_ECONOMIC_SECTOR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_INDUSTRY_TYPE.IS_ACTIVE' As [TABLE] ,
+                REF_INDUSTRY_TYPE.IS_ACTIVE As VALUE
+                From      REF_INDUSTRY_TYPE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_MASTER.IS_DELETABLE' As [TABLE] ,
+                REF_MASTER.IS_DELETABLE As VALUE
+                From      REF_MASTER With ( NoLock )
+                Where     IS_DELETABLE Not In ( 1, 0 )
+                Or IS_DELETABLE Is Null
+                
+                UNION
+
+                Select    'REF_MASTER.IS_SYSTEM' As [TABLE] ,
+                REF_MASTER.IS_SYSTEM As VALUE
+                From      REF_MASTER With ( NoLock )
+                Where     IS_SYSTEM Not In ( 1, 0 )
+                Or IS_SYSTEM Is Null
+                
+                UNION
+
+                Select    'REF_MASTER.IS_ACTIVE' As [TABLE] ,
+                REF_MASTER.IS_ACTIVE As VALUE
+                From      REF_MASTER With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_MASTER.IS_DEFAULT_VALUE' As [TABLE] ,
+                REF_MASTER.IS_DEFAULT_VALUE As VALUE
+                From      REF_MASTER With ( NoLock )
+                Where     IS_DEFAULT_VALUE Not In ( 1, 0 )
+                Or IS_DEFAULT_VALUE Is Null
+                
+                UNION
+
+                Select    'REF_PROV_DISTRICT.IS_ACTIVE' As [TABLE] ,
+                REF_PROV_DISTRICT.IS_ACTIVE As VALUE
+                From      REF_PROV_DISTRICT With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_USER.IS_LOCKED_OUT' As [TABLE] ,
+                REF_USER.IS_LOCKED_OUT As VALUE
+                From      REF_USER With ( NoLock )
+                Where     IS_LOCKED_OUT Not In ( 1, 0 )
+                Or IS_LOCKED_OUT Is Null
+                
+                UNION
+
+                Select    'REF_USER.IS_ACTIVE' As [TABLE] ,
+                REF_USER.IS_ACTIVE As VALUE
+                From      REF_USER With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_USER.IS_LOGGED_IN' As [TABLE] ,
+                REF_USER.IS_LOGGED_IN As VALUE
+                From      REF_USER With ( NoLock )
+                Where     IS_LOGGED_IN Not In ( 1, 0 )
+                Or IS_LOGGED_IN Is Null
+                
+                UNION
+
+                Select    'REF_USER.IS_NEED_UPDATE_PASSWORD' As [TABLE] ,
+                REF_USER.IS_NEED_UPDATE_PASSWORD As VALUE
+                From      REF_USER With ( NoLock )
+                Where     IS_NEED_UPDATE_PASSWORD Not In ( 1, 0 )
+                Or IS_NEED_UPDATE_PASSWORD Is Null
+                
+                UNION
+
+                Select    'REF_USER_ROLE.IS_ACTIVE' As [TABLE] ,
+                REF_USER_ROLE.IS_ACTIVE As VALUE
+                From      REF_USER_ROLE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'REF_ZIPCODE.IS_ACTIVE' As [TABLE] ,
+                REF_ZIPCODE.IS_ACTIVE As VALUE
+                From      REF_ZIPCODE With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'WORKING_HOUR_SCHM_H.IS_ACTIVE' As [TABLE] ,
+                WORKING_HOUR_SCHM_H.IS_ACTIVE As VALUE
+                From      WORKING_HOUR_SCHM_H With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'VENDOR.IS_ONE_AFFILIATE' As [TABLE] ,
+                VENDOR.IS_ONE_AFFILIATE As VALUE
+                From      VENDOR With ( NoLock )
+                Where     IS_ONE_AFFILIATE Not In ( 1, 0 )
+                Or IS_ONE_AFFILIATE Is Null
+                
+                UNION
+
+                Select    'VENDOR.IS_ACTIVE' As [TABLE] ,
+                VENDOR.IS_ACTIVE As VALUE
+                From      VENDOR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'VENDOR.IS_VAT' As [TABLE] ,
+                VENDOR.IS_VAT As VALUE
+                From      VENDOR With ( NoLock )
+                Where     IS_VAT Not In ( 1, 0 )
+                Or IS_VAT Is Null
+                
+                UNION
+
+                Select    'VENDOR.IS_NPWP_EXIST' As [TABLE] ,
+                VENDOR.IS_NPWP_EXIST As VALUE
+                From      VENDOR With ( NoLock )
+                Where     IS_NPWP_EXIST Not In ( 1, 0 )
+                Or IS_NPWP_EXIST Is Null
+                
+                UNION
+
+                Select    'VENDOR_AREA.IS_ACTIVE' As [TABLE] ,
+                VENDOR_AREA.IS_ACTIVE As VALUE
+                From      VENDOR_AREA With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'VENDOR_ATTR.IS_ACTIVE' As [TABLE] ,
+                VENDOR_ATTR.IS_ACTIVE As VALUE
+                From      VENDOR_ATTR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'VENDOR_BANK_ACC.IS_DEFAULT' As [TABLE] ,
+                VENDOR_BANK_ACC.IS_DEFAULT As VALUE
+                From      VENDOR_BANK_ACC With ( NoLock )
+                Where     IS_DEFAULT Not In ( 1, 0 )
+                Or IS_DEFAULT Is Null
+                
+                UNION
+
+                Select    'VENDOR_CONTACT_PERSON.IS_OWNER' As [TABLE] ,
+                VENDOR_CONTACT_PERSON.IS_OWNER As VALUE
+                From      VENDOR_CONTACT_PERSON With ( NoLock )
+                Where     IS_OWNER Not In ( 1, 0 )
+                Or IS_OWNER Is Null
+                
+                UNION
+
+                Select    'VENDOR_EMP.IS_NPWP_EXIST' As [TABLE] ,
+                VENDOR_EMP.IS_NPWP_EXIST As VALUE
+                From      VENDOR_EMP With ( NoLock )
+                Where     IS_NPWP_EXIST Not In ( 1, 0 )
+                Or IS_NPWP_EXIST Is Null
+                
+                UNION
+
+                Select    'VENDOR_EMP.IS_CONTACT_PERSON' As [TABLE] ,
+                VENDOR_EMP.IS_CONTACT_PERSON As VALUE
+                From      VENDOR_EMP With ( NoLock )
+                Where     IS_CONTACT_PERSON Not In ( 1, 0 )
+                Or IS_CONTACT_PERSON Is Null
+                
+                UNION
+
+                Select    'VENDOR_EMP.IS_OWNER' As [TABLE] ,
+                VENDOR_EMP.IS_OWNER As VALUE
+                From      VENDOR_EMP With ( NoLock )
+                Where     IS_OWNER Not In ( 1, 0 )
+                Or IS_OWNER Is Null
+                
+                UNION
+
+                Select    'VENDOR_EMP.IS_ACTIVE' As [TABLE] ,
+                VENDOR_EMP.IS_ACTIVE As VALUE
+                From      VENDOR_EMP With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'VENDOR_OFFICE_MBR.IS_ACTIVE' As [TABLE] ,
+                VENDOR_OFFICE_MBR.IS_ACTIVE As VALUE
+                From      VENDOR_OFFICE_MBR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'VENDOR_SCHM.IS_ACTIVE' As [TABLE] ,
+                VENDOR_SCHM.IS_ACTIVE As VALUE
+                From      VENDOR_SCHM With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+                UNION
+
+                Select    'VENDOR_SCHM_MBR.IS_ACTIVE' As [TABLE] ,
+                VENDOR_SCHM_MBR.IS_ACTIVE As VALUE
+                From      VENDOR_SCHM_MBR With ( NoLock )
+                Where     IS_ACTIVE Not In ( 1, 0 )
+                Or IS_ACTIVE Is Null
+                
+        ) AS X
+    --====================================== DATA TIDAK DITEMUKAN DI TABEL JOIN
+
+    Insert  Into INTEGRITY_CHECK
+        ( ISSUE ,
+          [TABLE] ,
+          VALUE
+        )
+        Select  'DATA TIDAK DITEMUKAN DI TABEL JOIN' ,
+                [TABLE] ,
+                VALUE
+        From    (
+    
+                SELECT 'CUST_OTHER_INFO.LBPPMS_DEBT_GRP_CODE' AS [TABLE] ,
+                CUST_OTHER_INFO.LBPPMS_DEBT_GRP_CODE AS VALUE
+                FROM dbo.CUST_OTHER_INFO WITH(NOLOCK)
+                LEFT JOIN dbo.LBPPMS_DEBT_GRP WITH(NOLOCK) ON LBPPMS_DEBT_GRP.LBPPMS_DEBT_GRP_CODE = CUST_OTHER_INFO.LBPPMS_DEBT_GRP_CODE
+                WHERE LBPPMS_DEBT_GRP.LBPPMS_DEBT_GRP_CODE IS NULL
+                GROUP BY CUST_OTHER_INFO.LBPPMS_DEBT_GRP_CODE
+                
+                UNION
+
+                SELECT 'CUST_OTHER_INFO.LBPPMS_BIZ_SCL_CODE' AS [TABLE] ,
+                CUST_OTHER_INFO.LBPPMS_BIZ_SCL_CODE AS VALUE
+                FROM dbo.CUST_OTHER_INFO WITH(NOLOCK)
+                LEFT JOIN dbo.LBPPMS_BIZ_SCL WITH(NOLOCK) ON LBPPMS_BIZ_SCL.LBPPMS_BIZ_SCL_CODE = CUST_OTHER_INFO.LBPPMS_BIZ_SCL_CODE
+                WHERE LBPPMS_BIZ_SCL.LBPPMS_BIZ_SCL_CODE IS NULL
+                GROUP BY CUST_OTHER_INFO.LBPPMS_BIZ_SCL_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL.WNA_COUNTRY_CODE' AS [TABLE] ,
+                CUST_PERSONAL.WNA_COUNTRY_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL WITH(NOLOCK)
+                LEFT JOIN dbo.REF_COUNTRY WITH(NOLOCK) ON REF_COUNTRY.COUNTRY_CODE = CUST_PERSONAL.WNA_COUNTRY_CODE
+                WHERE REF_COUNTRY.COUNTRY_CODE IS NULL
+                GROUP BY CUST_PERSONAL.WNA_COUNTRY_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.NATIONALITY_COUNTRY_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.NATIONALITY_COUNTRY_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_COUNTRY WITH(NOLOCK) ON REF_COUNTRY.COUNTRY_CODE = CUST_PERSONAL_EMERGENCY_CONTACT.NATIONALITY_COUNTRY_CODE
+                WHERE REF_COUNTRY.COUNTRY_CODE IS NULL
+                GROUP BY CUST_PERSONAL_EMERGENCY_CONTACT.NATIONALITY_COUNTRY_CODE
+                
+                UNION
+
+                SELECT 'REF_MASTER.REF_MASTER_TYPE_CODE' AS [TABLE] ,
+                REF_MASTER.REF_MASTER_TYPE_CODE AS VALUE
+                FROM dbo.REF_MASTER WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER_TYPE WITH(NOLOCK) ON REF_MASTER_TYPE.REF_MASTER_TYPE_CODE = REF_MASTER.REF_MASTER_TYPE_CODE
+                WHERE REF_MASTER_TYPE.REF_MASTER_TYPE_CODE IS NULL
+                GROUP BY REF_MASTER.REF_MASTER_TYPE_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_INSCO_BRANCH_SUM_INS.INS_ASSET_CATEGORY_CODE' AS [TABLE] ,
+                VENDOR_INSCO_BRANCH_SUM_INS.INS_ASSET_CATEGORY_CODE AS VALUE
+                FROM dbo.VENDOR_INSCO_BRANCH_SUM_INS WITH(NOLOCK)
+                LEFT JOIN dbo.ASSET_CATEGORY WITH(NOLOCK) ON ASSET_CATEGORY.ASSET_CATEGORY_CODE = VENDOR_INSCO_BRANCH_SUM_INS.INS_ASSET_CATEGORY_CODE
+                WHERE ASSET_CATEGORY.ASSET_CATEGORY_CODE IS NULL
+                GROUP BY VENDOR_INSCO_BRANCH_SUM_INS.INS_ASSET_CATEGORY_CODE
+                
+        ) AS X
+    --====================================== DATA MR_ BELUM TERDAFTAR DI REF_MASTER
+
+    Insert  Into INTEGRITY_CHECK
+        ( ISSUE ,
+          [TABLE] ,
+          VALUE
+        )
+        Select  'DATA MR_ BELUM TERDAFTAR DI REF_MASTER' ,
+                [TABLE] ,
+                VALUE
+        From    (
+    
+                SELECT 'CUST.MR_CUST_TYPE_CODE' AS [TABLE] ,
+                CUST.MR_CUST_TYPE_CODE AS VALUE
+                FROM dbo.CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST.MR_CUST_MODEL_CODE' AS [TABLE] ,
+                CUST.MR_CUST_MODEL_CODE AS VALUE
+                FROM dbo.CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_MODEL_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_MODEL'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_MODEL_CODE
+                
+                UNION
+
+                SELECT 'CUST.MR_ID_TYPE_CODE' AS [TABLE] ,
+                CUST.MR_ID_TYPE_CODE AS VALUE
+                FROM dbo.CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ID_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ID_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ID_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST_ADDR.MR_CUST_ADDR_TYPE_CODE' AS [TABLE] ,
+                CUST_ADDR.MR_CUST_ADDR_TYPE_CODE AS VALUE
+                FROM dbo.CUST_ADDR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_ADDR_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_ADDR_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_ADDR_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST_ADDR.MR_BUILDING_OWNERSHIP_CODE' AS [TABLE] ,
+                CUST_ADDR.MR_BUILDING_OWNERSHIP_CODE AS VALUE
+                FROM dbo.CUST_ADDR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_BUILDING_OWNERSHIP_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'OWNER_RELATIONSHIP'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_BUILDING_OWNERSHIP_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY.MR_COMPANY_TYPE_CODE' AS [TABLE] ,
+                CUST_COMPANY.MR_COMPANY_TYPE_CODE AS VALUE
+                FROM dbo.CUST_COMPANY WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_COMPANY_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'COY_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_COMPANY_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY.MR_INVESTMENT_TYPE_CODE' AS [TABLE] ,
+                CUST_COMPANY.MR_INVESTMENT_TYPE_CODE AS VALUE
+                FROM dbo.CUST_COMPANY WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_INVESTMENT_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'INVESTMENT_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_INVESTMENT_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY_CONTACT_PERSON.MR_JOB_POSITION_CODE' AS [TABLE] ,
+                CUST_COMPANY_CONTACT_PERSON.MR_JOB_POSITION_CODE AS VALUE
+                FROM dbo.CUST_COMPANY_CONTACT_PERSON WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_JOB_POSITION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'JOB_POSITION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_JOB_POSITION_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY_CONTACT_PERSON.MR_GENDER_CODE' AS [TABLE] ,
+                CUST_COMPANY_CONTACT_PERSON.MR_GENDER_CODE AS VALUE
+                FROM dbo.CUST_COMPANY_CONTACT_PERSON WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_GENDER_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'GENDER'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_GENDER_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY_CONTACT_PERSON.MR_CUST_RELATIONSHIP_CODE' AS [TABLE] ,
+                CUST_COMPANY_CONTACT_PERSON.MR_CUST_RELATIONSHIP_CODE AS VALUE
+                FROM dbo.CUST_COMPANY_CONTACT_PERSON WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_RELATIONSHIP_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_RELATIONSHIP'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_RELATIONSHIP_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY_CONTACT_PERSON.MR_ID_TYPE_CODE' AS [TABLE] ,
+                CUST_COMPANY_CONTACT_PERSON.MR_ID_TYPE_CODE AS VALUE
+                FROM dbo.CUST_COMPANY_CONTACT_PERSON WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ID_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ID_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ID_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY_LEGAL_DOC.MR_LEGAL_DOC_TYPE_CODE' AS [TABLE] ,
+                CUST_COMPANY_LEGAL_DOC.MR_LEGAL_DOC_TYPE_CODE AS VALUE
+                FROM dbo.CUST_COMPANY_LEGAL_DOC WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_LEGAL_DOC_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'LEGAL_DOC_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_LEGAL_DOC_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST_COMPANY_MGMNT_SHRHOLDER.MR_JOB_POSITION_CODE' AS [TABLE] ,
+                CUST_COMPANY_MGMNT_SHRHOLDER.MR_JOB_POSITION_CODE AS VALUE
+                FROM dbo.CUST_COMPANY_MGMNT_SHRHOLDER WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_JOB_POSITION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'JOB_POSITION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_JOB_POSITION_CODE
+                
+                UNION
+
+                SELECT 'CUST_GRP.MR_CUST_RELATIONSHIP_CODE' AS [TABLE] ,
+                CUST_GRP.MR_CUST_RELATIONSHIP_CODE AS VALUE
+                FROM dbo.CUST_GRP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_RELATIONSHIP_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_RELATIONSHIP'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_RELATIONSHIP_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL.MR_GENDER_CODE' AS [TABLE] ,
+                CUST_PERSONAL.MR_GENDER_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_GENDER_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'GENDER'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_GENDER_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL.MR_RELIGION_CODE' AS [TABLE] ,
+                CUST_PERSONAL.MR_RELIGION_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_RELIGION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'RELIGION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_RELIGION_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL.MR_EDUCATION_CODE' AS [TABLE] ,
+                CUST_PERSONAL.MR_EDUCATION_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_EDUCATION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'EDUCATION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_EDUCATION_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL.MR_NATIONALITY_CODE' AS [TABLE] ,
+                CUST_PERSONAL.MR_NATIONALITY_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_NATIONALITY_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'NATIONALITY'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_NATIONALITY_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL.MR_MARITAL_STAT_CODE' AS [TABLE] ,
+                CUST_PERSONAL.MR_MARITAL_STAT_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_MARITAL_STAT_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'MARITAL_STAT'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_MARITAL_STAT_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL.MR_SALUTATION_CODE' AS [TABLE] ,
+                CUST_PERSONAL.MR_SALUTATION_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_SALUTATION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'SALUTATION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_SALUTATION_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_ID_TYPE_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_ID_TYPE_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ID_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ID_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ID_TYPE_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_GENDER_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_GENDER_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_GENDER_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'GENDER'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_GENDER_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_RELIGION_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_RELIGION_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_RELIGION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'RELIGION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_RELIGION_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_EDUCATION_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_EDUCATION_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_EDUCATION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'EDUCATION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_EDUCATION_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_JOB_PROFESSION_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_JOB_PROFESSION_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_JOB_PROFESSION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'JOB_PROFESSION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_JOB_PROFESSION_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_MARITAL_STAT_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_MARITAL_STAT_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_MARITAL_STAT_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'MARITAL_STAT'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_MARITAL_STAT_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_NATIONALITY_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_NATIONALITY_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_NATIONALITY_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'NATIONALITY'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_NATIONALITY_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_EMERGENCY_CONTACT.MR_CUST_RELATIONSHIP_CODE' AS [TABLE] ,
+                CUST_PERSONAL_EMERGENCY_CONTACT.MR_CUST_RELATIONSHIP_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_EMERGENCY_CONTACT WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_RELATIONSHIP_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_RELATIONSHIP'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_RELATIONSHIP_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_FAMILY.MR_CUST_RELATIONSHIP' AS [TABLE] ,
+                CUST_PERSONAL_FAMILY.MR_CUST_RELATIONSHIP AS VALUE
+                FROM dbo.CUST_PERSONAL_FAMILY WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_RELATIONSHIP AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_RELATIONSHIP'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_RELATIONSHIP
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_FIN_DATA.MR_SOURCE_OF_INCOME_CODE' AS [TABLE] ,
+                CUST_PERSONAL_FIN_DATA.MR_SOURCE_OF_INCOME_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_FIN_DATA WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_SOURCE_OF_INCOME_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'SOURCE_OF_INCOME'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_SOURCE_OF_INCOME_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_JOB_DATA.MR_JOB_POSITION_CODE' AS [TABLE] ,
+                CUST_PERSONAL_JOB_DATA.MR_JOB_POSITION_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_JOB_DATA WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_JOB_POSITION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'JOB_POSITION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_JOB_POSITION_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_JOB_DATA.MR_JOB_STAT_CODE' AS [TABLE] ,
+                CUST_PERSONAL_JOB_DATA.MR_JOB_STAT_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_JOB_DATA WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_JOB_STAT_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'JOB_STAT'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_JOB_STAT_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_JOB_DATA.MR_COY_SCALE_CODE' AS [TABLE] ,
+                CUST_PERSONAL_JOB_DATA.MR_COY_SCALE_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_JOB_DATA WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_COY_SCALE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'COY_SCALE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_COY_SCALE_CODE
+                
+                UNION
+
+                SELECT 'CUST_PERSONAL_JOB_DATA.MR_INVESTMENT_TYPE_CODE' AS [TABLE] ,
+                CUST_PERSONAL_JOB_DATA.MR_INVESTMENT_TYPE_CODE AS VALUE
+                FROM dbo.CUST_PERSONAL_JOB_DATA WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_INVESTMENT_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'INVESTMENT_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_INVESTMENT_TYPE_CODE
+                
+                UNION
+
+                SELECT 'NEGATIVE_CUST.MR_CUST_TYPE_CODE' AS [TABLE] ,
+                NEGATIVE_CUST.MR_CUST_TYPE_CODE AS VALUE
+                FROM dbo.NEGATIVE_CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_TYPE_CODE
+                
+                UNION
+
+                SELECT 'NEGATIVE_CUST.MR_ID_TYPE_CODE' AS [TABLE] ,
+                NEGATIVE_CUST.MR_ID_TYPE_CODE AS VALUE
+                FROM dbo.NEGATIVE_CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ID_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ID_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ID_TYPE_CODE
+                
+                UNION
+
+                SELECT 'NEGATIVE_CUST.MR_GENDER_CODE' AS [TABLE] ,
+                NEGATIVE_CUST.MR_GENDER_CODE AS VALUE
+                FROM dbo.NEGATIVE_CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_GENDER_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'GENDER'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_GENDER_CODE
+                
+                UNION
+
+                SELECT 'NEGATIVE_CUST.MR_NEG_CUST_TYPE_CODE' AS [TABLE] ,
+                NEGATIVE_CUST.MR_NEG_CUST_TYPE_CODE AS VALUE
+                FROM dbo.NEGATIVE_CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_NEG_CUST_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'NEGATIVE_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_NEG_CUST_TYPE_CODE
+                
+                UNION
+
+                SELECT 'NEGATIVE_CUST.MR_NEG_CUST_SOURCE_CODE' AS [TABLE] ,
+                NEGATIVE_CUST.MR_NEG_CUST_SOURCE_CODE AS VALUE
+                FROM dbo.NEGATIVE_CUST WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_NEG_CUST_SOURCE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'NEGATIVE_DTA_SOURCE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_NEG_CUST_SOURCE_CODE
+                
+                UNION
+
+                SELECT 'CENTER_GRP.MR_CENTER_GRP_TYPE_CODE' AS [TABLE] ,
+                CENTER_GRP.MR_CENTER_GRP_TYPE_CODE AS VALUE
+                FROM dbo.CENTER_GRP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CENTER_GRP_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CENTER_GRP_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CENTER_GRP_TYPE_CODE
+                
+                UNION
+
+                SELECT 'REF_EMP.MR_ID_TYPE_CODE' AS [TABLE] ,
+                REF_EMP.MR_ID_TYPE_CODE AS VALUE
+                FROM dbo.REF_EMP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ID_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ID_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ID_TYPE_CODE
+                
+                UNION
+
+                SELECT 'REF_OFFICE.MR_KONVEN_SYARIAH_CODE' AS [TABLE] ,
+                REF_OFFICE.MR_KONVEN_SYARIAH_CODE AS VALUE
+                FROM dbo.REF_OFFICE WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_KONVEN_SYARIAH_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'KONVEN_SYARIAH'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_KONVEN_SYARIAH_CODE
+                
+                UNION
+
+                SELECT 'REF_OFFICE.MR_OFFICE_CLASS_CODE' AS [TABLE] ,
+                REF_OFFICE.MR_OFFICE_CLASS_CODE AS VALUE
+                FROM dbo.REF_OFFICE WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_OFFICE_CLASS_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'OFFICE_CLASS'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_OFFICE_CLASS_CODE
+                
+                UNION
+
+                SELECT 'REF_OFFICE.MR_OFFICE_TYPE_CODE' AS [TABLE] ,
+                REF_OFFICE.MR_OFFICE_TYPE_CODE AS VALUE
+                FROM dbo.REF_OFFICE WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_OFFICE_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'OFFICE_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_OFFICE_TYPE_CODE
+                
+                UNION
+
+                SELECT 'SURVEYOR.MR_SURVEYOR_TYPE_CODE' AS [TABLE] ,
+                SURVEYOR.MR_SURVEYOR_TYPE_CODE AS VALUE
+                FROM dbo.SURVEYOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_SURVEYOR_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'SURVEY_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_SURVEYOR_TYPE_CODE
+                
+                UNION
+
+                SELECT 'REF_PROFESSION.MR_CUST_MODEL_CODE' AS [TABLE] ,
+                REF_PROFESSION.MR_CUST_MODEL_CODE AS VALUE
+                FROM dbo.REF_PROFESSION WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_CUST_MODEL_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'CUST_MODEL'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_CUST_MODEL_CODE
+                
+                UNION
+
+                SELECT 'REF_SUPPL_EMP_POSITION_X.MR_VENDOR_EMP_POSITION_CODE' AS [TABLE] ,
+                REF_SUPPL_EMP_POSITION_X.MR_VENDOR_EMP_POSITION_CODE AS VALUE
+                FROM dbo.REF_SUPPL_EMP_POSITION_X WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_VENDOR_EMP_POSITION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'VENDOR_EMP_POSITION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_VENDOR_EMP_POSITION_CODE
+                
+                UNION
+
+                SELECT 'VENDOR.MR_VENDOR_CATEGORY_CODE' AS [TABLE] ,
+                VENDOR.MR_VENDOR_CATEGORY_CODE AS VALUE
+                FROM dbo.VENDOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_VENDOR_CATEGORY_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'VENDOR_CATEGORY'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_VENDOR_CATEGORY_CODE
+                
+                UNION
+
+                SELECT 'VENDOR.MR_VENDOR_TYPE_CODE' AS [TABLE] ,
+                VENDOR.MR_VENDOR_TYPE_CODE AS VALUE
+                FROM dbo.VENDOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_VENDOR_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'VENDOR_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_VENDOR_TYPE_CODE
+                
+                UNION
+
+                SELECT 'VENDOR.MR_ID_TYPE_CODE' AS [TABLE] ,
+                VENDOR.MR_ID_TYPE_CODE AS VALUE
+                FROM dbo.VENDOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ID_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ID_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ID_TYPE_CODE
+                
+                UNION
+
+                SELECT 'VENDOR.MR_TAX_CALC_METHOD_CODE' AS [TABLE] ,
+                VENDOR.MR_TAX_CALC_METHOD_CODE AS VALUE
+                FROM dbo.VENDOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_TAX_CALC_METHOD_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'TAX_METHOD'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_TAX_CALC_METHOD_CODE
+                
+                UNION
+
+                SELECT 'VENDOR.MR_DUPLICATE_STATUS_CODE' AS [TABLE] ,
+                VENDOR.MR_DUPLICATE_STATUS_CODE AS VALUE
+                FROM dbo.VENDOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_DUPLICATE_STATUS_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'DUPLICATE_STATUS'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_DUPLICATE_STATUS_CODE
+                
+                UNION
+
+                SELECT 'VENDOR.MR_NATIONALTIY_CODE' AS [TABLE] ,
+                VENDOR.MR_NATIONALTIY_CODE AS VALUE
+                FROM dbo.VENDOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_NATIONALTIY_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'NATIONALITY'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_NATIONALTIY_CODE
+                
+                UNION
+
+                SELECT 'VENDOR.MR_VENDOR_CLASS' AS [TABLE] ,
+                VENDOR.MR_VENDOR_CLASS AS VALUE
+                FROM dbo.VENDOR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_VENDOR_CLASS AND REF_MASTER.REF_MASTER_TYPE_CODE = 'VENDOR_CLASS'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_VENDOR_CLASS
+                
+                UNION
+
+                SELECT 'VENDOR_ADDR.MR_ADDR_TYPE_CODE' AS [TABLE] ,
+                VENDOR_ADDR.MR_ADDR_TYPE_CODE AS VALUE
+                FROM dbo.VENDOR_ADDR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ADDR_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ADDR_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ADDR_TYPE_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_ATTR.MR_VENDOR_CATEGORY_CODE' AS [TABLE] ,
+                VENDOR_ATTR.MR_VENDOR_CATEGORY_CODE AS VALUE
+                FROM dbo.VENDOR_ATTR WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_VENDOR_CATEGORY_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'VENDOR_CATEGORY'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_VENDOR_CATEGORY_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_CONTACT_PERSON.MR_EMPLOYEE_POSITION' AS [TABLE] ,
+                VENDOR_CONTACT_PERSON.MR_EMPLOYEE_POSITION AS VALUE
+                FROM dbo.VENDOR_CONTACT_PERSON WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_EMPLOYEE_POSITION AND REF_MASTER.REF_MASTER_TYPE_CODE = 'EMPLOYEE_POSITION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_EMPLOYEE_POSITION
+                
+                UNION
+
+                SELECT 'VENDOR_EMP.MR_ID_TYPE_CODE' AS [TABLE] ,
+                VENDOR_EMP.MR_ID_TYPE_CODE AS VALUE
+                FROM dbo.VENDOR_EMP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ID_TYPE_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ID_TYPE'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ID_TYPE_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_EMP.MR_VENDOR_EMP_POSITION_CODE' AS [TABLE] ,
+                VENDOR_EMP.MR_VENDOR_EMP_POSITION_CODE AS VALUE
+                FROM dbo.VENDOR_EMP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_VENDOR_EMP_POSITION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'VENDOR_EMP_POSITION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_VENDOR_EMP_POSITION_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_EMP.MR_TAX_CALC_METHOD_CODE' AS [TABLE] ,
+                VENDOR_EMP.MR_TAX_CALC_METHOD_CODE AS VALUE
+                FROM dbo.VENDOR_EMP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_TAX_CALC_METHOD_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'TAX_CALC_METHOD'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_TAX_CALC_METHOD_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_EMP.MR_TAX_PGRSV_SCHENME_CODE' AS [TABLE] ,
+                VENDOR_EMP.MR_TAX_PGRSV_SCHENME_CODE AS VALUE
+                FROM dbo.VENDOR_EMP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_TAX_PGRSV_SCHENME_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'TAX_PGRSV_SCHENME'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_TAX_PGRSV_SCHENME_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_EMP.MR_TAX_PGRSV_SCHEME_NAME' AS [TABLE] ,
+                VENDOR_EMP.MR_TAX_PGRSV_SCHEME_NAME AS VALUE
+                FROM dbo.VENDOR_EMP WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_TAX_PGRSV_SCHEME_NAME AND REF_MASTER.REF_MASTER_TYPE_CODE = 'TAX_PGRSV_SCHEME'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_TAX_PGRSV_SCHEME_NAME
+                
+                UNION
+
+                SELECT 'VENDOR_INSCO_BRANCH_SUM_INS.MR_ASSET_CONDITION_CODE' AS [TABLE] ,
+                VENDOR_INSCO_BRANCH_SUM_INS.MR_ASSET_CONDITION_CODE AS VALUE
+                FROM dbo.VENDOR_INSCO_BRANCH_SUM_INS WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_ASSET_CONDITION_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'ASSET_CONDITION'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_ASSET_CONDITION_CODE
+                
+                UNION
+
+                SELECT 'VENDOR_SCHM.MR_VENDOR_CATEGORY_CODE' AS [TABLE] ,
+                VENDOR_SCHM.MR_VENDOR_CATEGORY_CODE AS VALUE
+                FROM dbo.VENDOR_SCHM WITH(NOLOCK)
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = MR_VENDOR_CATEGORY_CODE AND REF_MASTER.REF_MASTER_TYPE_CODE = 'VENDOR_CATEGORY'
+                WHERE REF_MASTER_ID IS NULL
+                GROUP BY MR_VENDOR_CATEGORY_CODE
+                
+        ) AS X
