@@ -9,6 +9,7 @@ let n = xlData.length
 
 let final = ''
 let prev = ''
+fs.writeFileSync('resultCase.txt', final)
 for (let i = 0; i < n; i++) {
     let obj = xlData[i]
 
@@ -115,10 +116,7 @@ for (let i = 0; i < n; i++) {
     } else {
         res += '\n                UNION\n'
     }
-
-    final += res
-
+    fs.appendFileSync('resultCase.txt', res)
 }
 
 
-fs.writeFileSync('resultCase.txt', final)

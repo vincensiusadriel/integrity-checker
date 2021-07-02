@@ -9,6 +9,7 @@ let n = xlData.length
 
 let final = ''
 let prev = ''
+fs.writeFileSync('result.txt', final)
 for (let i = 0; i < n; i++) {
     let obj = xlData[i]
 
@@ -74,9 +75,6 @@ for (let i = 0; i < n; i++) {
 
     }
 
-    final += res + '\n\n'
-
+    fs.appendFileSync('result.txt', res + '\n\n')
 }
 
-
-fs.writeFileSync('result.txt', final)
