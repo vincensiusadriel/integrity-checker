@@ -2,7 +2,11 @@ const xlsx = require('xlsx')
 const prompt = require('prompt-sync')()
 const fs = require('fs')
 
-let filename = prompt('Write filename without the extension (.xlsx) : ')
+let filename = prompt('Write filename without the extension (.xlsx) (default : Book1) : ')
+console.log(filename)
+if (filename == '') {
+    filename = 'Book1'
+}
 
 let workbook = xlsx.readFile(filename + '.xlsx');
 let sheet_name_list = workbook.SheetNames;
@@ -10,60 +14,18 @@ let xlData = xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
 
 let n = xlData.length
 
+
+let gigaType = prompt('Result type (c: by case (default), t: by table with no insert) : ')
 let final = ''
 let prev = ''
-fs.writeFileSync('resultCase.txt', final)
-for (let i = 0; i < n; i++) {
-    let obj = xlData[i]
 
+
+const query = (obj, res) => {
     let tableName = obj.tableName
     let columnName = obj.columnName
     let joinTableName = obj.joinTableName
     let joinColumnName = obj.joinColumnName
     let grpCode = obj.grpCode
-
-    let res = ''
-
-    if (prev != obj.type) {
-        let typeString = ''
-
-        switch (obj.type) {
-            case 'IS':
-                typeString = 'IS_ DIISI 0 ATAU 1, BUKAN Y ATAU N, TIDAK BOLEH NULL'
-                break;
-
-            case 'DUP':
-                typeString = 'DATA TIDAK BOLEH DUPLIKAT'
-                break;
-
-            case 'RM':
-                typeString = 'DATA MR_ BELUM TERDAFTAR DI REF_MASTER'
-                break;
-
-            case 'JOIN':
-                typeString = 'DATA TIDAK DITEMUKAN DI TABEL JOIN'
-                break;
-
-
-        }
-
-
-        let begin = `
-    --====================================== ${typeString}
-
-    Insert  Into INTEGRITY_CHECK
-        ( ISSUE ,
-          [TABLE] ,
-          VALUE
-        )
-        Select  '${typeString}' ,
-                [TABLE] ,
-                VALUE
-        From    (
-    `
-        res += begin
-        prev = obj.type
-    }
 
     switch (obj.type) {
         case 'IS':
@@ -113,13 +75,82 @@ for (let i = 0; i < n; i++) {
 
 
     }
+    return res
+}
+fs.writeFileSync('result.txt', final)
+if (gigaType == 't') {
+    for (let i = 0; i < n; i++) {
+        let obj = xlData[i]
 
-    if (xlData[i + 1] == undefined || obj.type != xlData[i + 1].type) {
-        res += `\n        ) AS X`
-    } else {
-        res += '\n                UNION\n'
+
+
+        let res = ''
+
+        if (prev != obj.tableName) {
+            res = `--==================   ${obj.tableName}   ============================\n\n`
+            prev = obj.tableName
+        }
+
+        res = query(obj, res)
+
+        fs.appendFileSync('result.txt', res + '\n\n')
     }
-    fs.appendFileSync('resultCase.txt', res)
+} else {
+    for (let i = 0; i < n; i++) {
+        let obj = xlData[i]
+
+        let res = ''
+
+        if (prev != obj.type) {
+            let typeString = ''
+
+            switch (obj.type) {
+                case 'IS':
+                    typeString = 'IS_ DIISI 0 ATAU 1, BUKAN Y ATAU N, TIDAK BOLEH NULL'
+                    break;
+
+                case 'DUP':
+                    typeString = 'DATA TIDAK BOLEH DUPLIKAT'
+                    break;
+
+                case 'RM':
+                    typeString = 'DATA MR_ BELUM TERDAFTAR DI REF_MASTER'
+                    break;
+
+                case 'JOIN':
+                    typeString = 'DATA TIDAK DITEMUKAN DI TABEL JOIN'
+                    break;
+
+
+            }
+
+
+            let begin = `
+        --====================================== ${typeString}
+    
+        Insert  Into INTEGRITY_CHECK
+            ( ISSUE ,
+              [TABLE] ,
+              VALUE
+            )
+            Select  '${typeString}' ,
+                    [TABLE] ,
+                    VALUE
+            From    (
+        `
+            res += begin
+            prev = obj.type
+        }
+
+        res = query(obj, res)
+
+        if (xlData[i + 1] == undefined || obj.type != xlData[i + 1].type) {
+            res += `\n        ) AS X`
+        } else {
+            res += '\n                UNION\n'
+        }
+        fs.appendFileSync('result.txt', res)
+    }
 }
 
 

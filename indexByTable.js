@@ -17,7 +17,7 @@ for (let i = 0; i < n; i++) {
     let columnName = obj.columnName
     let joinTableName = obj.joinTableName
     let joinColumnName = obj.joinColumnName
-    let refMasterType = obj.refMasterType
+    let grpCode = obj.grpCode
 
     let res = ''
 
@@ -55,7 +55,7 @@ for (let i = 0; i < n; i++) {
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
                 ${tableName}.${columnName} AS VALUE
                 FROM dbo.${tableName} WITH(NOLOCK)
-                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = ${columnName} AND REF_MASTER.REF_MASTER_TYPE_CODE = '${refMasterType}'
+                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = ${columnName} AND REF_MASTER.REF_MASTER_TYPE_CODE = '${grpCode}'
                 WHERE REF_MASTER_ID IS NULL
                 GROUP BY ${columnName}
                 `
