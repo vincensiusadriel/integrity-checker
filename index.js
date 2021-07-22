@@ -29,6 +29,7 @@ try {
         let joinTableName = obj.joinTableName
         let joinColumnName = obj.joinColumnName
         let grpCode = obj.grpCode
+        let custom = obj.custom
 
         switch (obj.type) {
             case 'IS':
@@ -86,6 +87,15 @@ try {
                 GROUP BY ${tableName}.${columnName}
                 `
                 break;
+            case 'C':
+                res += `
+                SELECT '${tableName}.${columnName}' AS [TABLE] ,
+                ${tableName}.${columnName} AS VALUE
+                FROM (
+                    ${custom.replace(/\n/g, '\n                   ')}
+                ) AS ${tableName}
+                `
+                break;
 
 
         }
@@ -137,6 +147,10 @@ try {
 
                     case 'JOIN':
                         typeString = 'DATA TIDAK DITEMUKAN DI TABEL JOIN'
+                        break;
+
+                    case 'C':
+                        typeString = obj.customDesc
                         break;
 
 
