@@ -30,13 +30,15 @@ try {
         let joinColumnName = obj.joinColumnName
         let grpCode = obj.grpCode
         let custom = obj.custom
+        let dbName = obj.dbName
+        let joinDbName = obj.joinDbName
 
         switch (obj.type) {
             case 'IS':
                 res += `
                 Select    '${tableName}.${columnName}' As [TABLE] ,
                 ${tableName}.${columnName} As VALUE
-                From      ${tableName} With ( NoLock )
+                From      ${dbName}.dbo.${tableName} With ( NoLock )
                 Where     ${columnName} Not In ( 1, 0 )
                 Or ${columnName} Is Null
                 `
@@ -48,7 +50,7 @@ try {
                 X.${columnName} AS VALUE
                 FROM      (
                 SELECT COUNT(1) AS COUNTID, ${columnName} 
-                FROM ${tableName} WITH ( NOLOCK )
+                FROM ${dbName}.dbo.${tableName} WITH ( NOLOCK )
                 GROUP BY ${columnName}
                 HAVING COUNT(1) > 1
                 ) X
@@ -59,9 +61,9 @@ try {
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
                 ${tableName}.${columnName} AS VALUE
-                FROM dbo.${tableName} WITH(NOLOCK)
-                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = ${columnName} AND REF_MASTER.REF_MASTER_TYPE_CODE = '${grpCode}'
-                WHERE REF_MASTER_ID IS NULL
+                FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
+                LEFT JOIN ${joinDbName}.dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = ${columnName} AND REF_MASTER.REF_MASTER_TYPE_CODE = '${grpCode}'
+                WHERE MASTER_CODE IS NULL
                 GROUP BY ${columnName}
                 `
                 break;
@@ -70,9 +72,9 @@ try {
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
                 ${tableName}.${columnName} AS VALUE
-                FROM dbo.${tableName} WITH(NOLOCK)
-                LEFT JOIN dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = ${columnName} AND REF_MASTER.REF_MASTER_TYPE_CODE = '${grpCode}'
-                WHERE REF_MASTER_ID IS NULL
+                FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
+                LEFT JOIN ${joinDbName}.dbo.REF_STATUS WITH(NOLOCK) ON REF_STATUS.REF_STATUS_CODE = ${columnName} AND REF_STATUS.STATUS_GRP_CODE = '${grpCode}'
+                WHERE REF_STATUS_CODE IS NULL
                 GROUP BY ${columnName}
                 `
                 break;
@@ -81,8 +83,8 @@ try {
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
                 ${tableName}.${columnName} AS VALUE
-                FROM dbo.${tableName} WITH(NOLOCK)
-                LEFT JOIN dbo.${joinTableName} WITH(NOLOCK) ON ${joinTableName}.${joinColumnName} = ${tableName}.${columnName}
+                FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
+                LEFT JOIN ${joinDbName}.dbo.${joinTableName} WITH(NOLOCK) ON ${joinTableName}.${joinColumnName} = ${tableName}.${columnName}
                 WHERE ${joinTableName}.${joinColumnName} IS NULL
                 GROUP BY ${tableName}.${columnName}
                 `
