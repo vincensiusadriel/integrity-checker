@@ -127,7 +127,7 @@ try {
 
             let res = ''
 
-            if (prev != obj.type) {
+            if (obj.type == 'C' || prev != obj.type) {
                 let typeString = ''
 
                 switch (obj.type) {
@@ -152,7 +152,7 @@ try {
                         break;
 
                     case 'C':
-                        typeString = obj.customDesc
+                        typeString = obj.customDesc.toUpperCase()
                         break;
 
 
@@ -178,7 +178,7 @@ try {
 
             res = query(obj, res)
 
-            if (xlData[i + 1] == undefined || obj.type != xlData[i + 1].type) {
+            if (xlData[i + 1] == undefined || obj.type == 'C' || obj.type != xlData[i + 1].type) {
                 res += `\n        ) AS X`
             } else {
                 res += '\n                UNION\n'
