@@ -47,7 +47,7 @@ try {
             case 'DUP':
                 res += `
                 SELECT    '${tableName}.${columnName}' AS [TABLE] ,
-                X.${columnName} AS VALUE
+                X.${columnName} COLLATE Latin1_General_CI_AI AS VALUE
                 FROM      (
                 SELECT COUNT(1) AS COUNTID, ${columnName} 
                 FROM ${dbName}.dbo.${tableName} WITH ( NOLOCK )
@@ -60,7 +60,7 @@ try {
             case 'RM':
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
-                ${tableName}.${columnName} AS VALUE
+                ${tableName}.${columnName} COLLATE Latin1_General_CI_AI AS VALUE
                 FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
                 LEFT JOIN ${joinDbName}.dbo.REF_MASTER WITH(NOLOCK) ON REF_MASTER.MASTER_CODE = ${columnName} AND REF_MASTER.REF_MASTER_TYPE_CODE = '${grpCode}'
                 WHERE MASTER_CODE IS NULL
@@ -71,7 +71,7 @@ try {
             case 'RS':
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
-                ${tableName}.${columnName} AS VALUE
+                ${tableName}.${columnName} COLLATE Latin1_General_CI_AI AS VALUE
                 FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
                 LEFT JOIN ${joinDbName}.dbo.REF_STATUS WITH(NOLOCK) ON REF_STATUS.REF_STATUS_CODE = ${columnName} AND REF_STATUS.STATUS_GRP_CODE = '${grpCode}'
                 WHERE REF_STATUS_CODE IS NULL
@@ -82,7 +82,7 @@ try {
             case 'JOIN':
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
-                ${tableName}.${columnName} AS VALUE
+                ${tableName}.${columnName} COLLATE Latin1_General_CI_AI AS VALUE
                 FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
                 LEFT JOIN ${joinDbName}.dbo.${joinTableName} WITH(NOLOCK) ON ${joinTableName}.${joinColumnName} = ${tableName}.${columnName}
                 WHERE ${joinTableName}.${joinColumnName} IS NULL
@@ -105,6 +105,13 @@ try {
     }
     fs.writeFileSync('result.txt', final)
     if (gigaType == 't') {
+
+        xlData.sort((a, b) => {
+            if (a.tableName < b.tableName) return -1
+            else if (a.tableName > b.tableName) return 1
+            else return 0
+        })
+
         for (let i = 0; i < n; i++) {
             let obj = xlData[i]
 
@@ -122,6 +129,12 @@ try {
             fs.appendFileSync('result.txt', res + '\n\n')
         }
     } else {
+        xlData.sort((a, b) => {
+            if (a.type < b.type) return -1
+            else if (a.type > b.type) return 1
+            else return 0
+        })
+
         for (let i = 0; i < n; i++) {
             let obj = xlData[i]
 
@@ -143,7 +156,7 @@ try {
                         typeString = 'DATA MR_ BELUM TERDAFTAR DI REF_MASTER'
                         break;
 
-                    case 'RM':
+                    case 'RS':
                         typeString = 'DATA STATUS BELUM TERDAFTAR'
                         break;
 
