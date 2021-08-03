@@ -82,7 +82,7 @@ try {
             case 'JOIN':
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
-                ${tableName}.${columnName} COLLATE Latin1_General_CI_AI AS VALUE
+                ${tableName}.${columnName} ${columnName.includes('_ID') ? '' : 'COLLATE Latin1_General_CI_AI'} AS VALUE
                 FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
                 LEFT JOIN ${joinDbName}.dbo.${joinTableName} WITH(NOLOCK) ON ${joinTableName}.${joinColumnName} = ${tableName}.${columnName}
                 WHERE ${joinTableName}.${joinColumnName} IS NULL
