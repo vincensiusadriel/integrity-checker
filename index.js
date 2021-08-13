@@ -47,7 +47,7 @@ try {
             case 'DUP':
                 res += `
                 SELECT    '${tableName}.${columnName}' AS [TABLE] ,
-                X.${columnName} COLLATE Latin1_General_CI_AI AS VALUE
+                ${columnName.includes('_ID') ? `CONVERT(NVARCHAR(1000), X.${columnName})` : `X.${columnName}`} ${columnName.includes('_ID') ? '' : 'COLLATE Latin1_General_CI_AI'} AS VALUE
                 FROM      (
                 SELECT COUNT(1) AS COUNTID, ${columnName} 
                 FROM ${dbName}.dbo.${tableName} WITH ( NOLOCK )
@@ -82,7 +82,7 @@ try {
             case 'JOIN':
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
-                ${tableName}.${columnName} ${columnName.includes('_ID') ? '' : 'COLLATE Latin1_General_CI_AI'} AS VALUE
+                ${columnName.includes('_ID') ? `CONVERT(NVARCHAR(1000), ${tableName}.${columnName})` : `${tableName}.${columnName}`}  ${columnName.includes('_ID') ? '' : 'COLLATE Latin1_General_CI_AI'} AS VALUE
                 FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
                 LEFT JOIN ${joinDbName}.dbo.${joinTableName} WITH(NOLOCK) ON ${joinTableName}.${joinColumnName} = ${tableName}.${columnName}
                 WHERE ${joinTableName}.${joinColumnName} IS NULL
@@ -92,14 +92,21 @@ try {
             case 'C':
                 res += `
                 SELECT '${tableName}.${columnName}' AS [TABLE] ,
-                ${tableName}.${columnName} AS VALUE
+                ${columnName.includes('_ID') ? `CONVERT(NVARCHAR(1000), ${tableName}.${columnName})` : `${tableName}.${columnName}`} AS VALUE
                 FROM (
                     ${custom.replace(/\n/g, '\n                   ')}
                 ) AS ${tableName}
                 `
                 break;
 
-
+            case 'NULL':
+                res += `
+                SELECT '${tableName}.${columnName}' AS [TABLE] ,
+                ${tableName}.${tableName}_ID AS VALUE
+                FROM ${dbName}.dbo.${tableName} WITH(NOLOCK)
+                WHERE ${tableName}.${columnName} IS NULL
+                `
+                break;
         }
         return res
     }
@@ -168,7 +175,9 @@ try {
                         typeString = obj.customDesc.toUpperCase()
                         break;
 
-
+                    case 'NULL':
+                        typeString = `DATA TIDAK BOLEH NULL`
+                        break;
                 }
 
 
