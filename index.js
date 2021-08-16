@@ -6,7 +6,6 @@ const fs = require('fs')
 
 try {
     let filename = prompt('Write filename without the extension (.xlsx) (default : Book1) : ')
-    console.log(filename)
     if (filename == '') {
         filename = 'Book1'
     }
